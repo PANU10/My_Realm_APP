@@ -1,0 +1,103 @@
+package com.example.myrealmapp.app;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import com.example.myrealmapp.R;
+import com.example.myrealmapp.entity.Books;
+
+import java.util.UUID;
+
+import io.realm.Realm;
+import io.realm.RealmAsyncTask;
+
+public class AddActivity extends AppCompatActivity {
+
+    private EditText bookName, authorName, bookPrice;
+    private Realm myRealm;
+    private RealmAsyncTask realmAsyncTask;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_add);
+
+        bookName = findViewById(R.id.book_name_edit_text);
+        authorName = findViewById(R.id.author_name_edit_text);
+        bookPrice = findViewById(R.id.book_price_edit_text);
+
+        myRealm = Realm.getDefaultInstance();
+    }
+
+    private void insertRecords(){
+
+        final String id = UUID.randomUUID().toString();
+        final String book_name = bookName.getText().toString().trim();
+        final String author_name = authorName.getText().toString().trim();
+        final String book_price = bookPrice.getText().toString().trim();
+
+        if (book_name.isEmpty()) {
+           Toast.makeText(AddActivity.this, "Enter book name ... " , Toast.LENGTH_LONG).show();
+           return;
+        }
+
+        if (author_name.isEmpty()) {
+            Toast.makeText(AddActivity.this, "Enter autor name ... " , Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        if (book_price.isEmpty()) {
+            Toast.makeText(AddActivity.this, "Enter price book ... " , Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        realmAsyncTask = myRealm.executeTransactionAsync(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                Books books = realm.createObject(Books.class, id);
+                books.setBookName(book_name);
+                books.setBookAutor(author_name);
+                books.setBookPrice(Double.parseDouble(book_price));
+            }
+        }, new Realm.Transaction.OnSuccess() {
+            @Override
+            public void onSuccess() {
+                Toast.makeText(AddActivity.this, "Insert Record Successfully" , Toast.LENGTH_LONG).show();
+                bookName.setText("");
+                authorName.setText("");
+                bookPrice.setText("");
+            }
+        }, new Realm.Transaction.OnError() {
+            @Override
+            public void onError(Throwable error) {
+
+                Toast.makeText(AddActivity.this, "Error Is Insert Record ..."
+                        , Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
+    public void addBooks(View view) {
+        insertRecords();
+    }
+
+    @Override
+    protected void onStop(){
+        super.onStop();
+        if (realmAsyncTask != null && realmAsyncTask.isCancelled()) {
+            realmAsyncTask.cancel();
+        }
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        myRealm.close();
+    }
+
+
+}
