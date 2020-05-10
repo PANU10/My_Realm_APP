@@ -93,6 +93,7 @@ public class AddActivity extends AppCompatActivity {
             realmAsyncTask.cancel();
         }
     }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();

@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myrealmapp.R;
 import com.example.myrealmapp.app.EditActivity;
-import com.example.myrealmapp.app.MainActivity;
 import com.example.myrealmapp.entity.Books;
 
 import io.realm.Realm;
@@ -119,9 +118,5 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.Holders>{
             });
 
         }
-
-        // Buscar Books
-
-
     }
 }

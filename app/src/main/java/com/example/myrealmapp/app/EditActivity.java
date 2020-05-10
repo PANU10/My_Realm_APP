@@ -50,7 +50,6 @@ public class EditActivity extends AppCompatActivity {
 
 
     private void updateBooks() {
-
         myRealm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {

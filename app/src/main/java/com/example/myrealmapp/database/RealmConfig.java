@@ -10,6 +10,8 @@ public class RealmConfig extends Application {
     public void onCreate() {
         super.onCreate();
         Realm.init(this);
+
+        // Aplicar la configuración por defecto
         RealmConfiguration config = new RealmConfiguration.Builder()
                 .name("books.realm").build();
         Realm.setDefaultConfiguration(config);
