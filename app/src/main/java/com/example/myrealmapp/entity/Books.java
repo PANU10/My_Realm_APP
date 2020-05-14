@@ -15,12 +15,12 @@ public class Books extends RealmObject {
     @Required
     private String bookAutor;
 
-    // Migration version 1 : Añadir este campo y borrar el atributo bookprice
+//    @Required
+//    private String bookPrice;
+
+    // Migration version 1 : Añadir este campo nuevo y borrar el atributo bookprice
     @Required
     private String bookAutroSurname;
-
-
-    // Migration version 2 : Juntar los dos campos NAME y SURNAME
 
 
 
