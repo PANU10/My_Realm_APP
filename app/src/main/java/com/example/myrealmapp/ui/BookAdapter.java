@@ -58,14 +58,14 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.Holders>{
     public class Holders extends RecyclerView.ViewHolder{
 
         private int position;
-        private TextView book_name, author_name, book_price;
+        private TextView book_name, author_name, author_surname;
         private ImageView editImage, deleteImageBook;
 
         public Holders(@NonNull View itemView) {
             super(itemView);
             book_name = itemView.findViewById(R.id.book_name_text_view);
             author_name = itemView.findViewById(R.id.author_name_text_view);
-            book_price = itemView.findViewById(R.id.book_price_text_view);
+            author_surname = itemView.findViewById(R.id.author_surname_text_view);
             editImage = itemView.findViewById(R.id.edit_image_view);
             deleteImageBook = itemView.findViewById(R.id.delete_image_view);
 
@@ -75,12 +75,12 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.Holders>{
 
             this.position = position;
             String name = books.getBookName();
-            String author = books.getBookAutor();
-            Double price = books.getBookPrice();
+            String authorName = books.getBookAutorName();
+            String autorSurname = books.getBookAutroSurname();
 
             book_name.setText(name);
-            author_name.setText(author);
-            book_price.setText("€ " + price);
+            author_name.setText("NameAuthor -> " + authorName);
+            author_surname.setText("SurnameAuthor -> " + autorSurname);
         }
 
         public void setListener() {

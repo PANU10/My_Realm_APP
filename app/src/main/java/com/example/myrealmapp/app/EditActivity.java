@@ -17,7 +17,7 @@ import io.realm.RealmResults;
 
 public class EditActivity extends AppCompatActivity {
 
-    private EditText book_name, author_name, book_price;
+    private EditText book_name, author_name, autor_surname;
     private Realm myRealm;
     private Bundle bundle;
     private int position;
@@ -33,8 +33,7 @@ public class EditActivity extends AppCompatActivity {
 
         book_name = findViewById(R.id.edit_book_name_edit_text);
         author_name = findViewById(R.id.edit_author_name_edit_text);
-        book_price = findViewById(R.id.edit_book_price_edit_text);
-
+        autor_surname = findViewById(R.id.edit_author_surname_edit_text);
         myRealm = Realm.getDefaultInstance();
 
         RealmResults<Books> realmResults = myRealm.where(Books.class).findAll();
@@ -44,8 +43,8 @@ public class EditActivity extends AppCompatActivity {
 
     private void setupViews(Books books) {
         book_name.setText(books.getBookName());
-        author_name.setText(books.getBookAutor());
-        book_price.setText("" + books.getBookPrice());
+        author_name.setText(books.getBookAutorName());
+        autor_surname.setText(books.getBookAutroSurname());
     }
 
 
@@ -55,14 +54,13 @@ public class EditActivity extends AppCompatActivity {
             public void execute(Realm realm) {
 
                 books.setBookName(book_name.getText().toString().trim());
-                books.setBookAutor(author_name.getText().toString().trim());
-                books.setBookPrice(Double.parseDouble(book_price.getText().toString().trim()));
+                books.setBookAutorName(author_name.getText().toString().trim());
+                books.setBookAutroSurname(autor_surname.getText().toString().trim());
                 startActivity(new Intent(EditActivity.this, MainActivity.class));
                 Toast.makeText(EditActivity.this,
                         "Edit Record Successfully ...", Toast.LENGTH_SHORT);
             }
         });
-
     }
 
     public void editBooks(View view) {

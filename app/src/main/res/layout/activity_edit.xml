@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="8dp"
-            android:text="Book Autor"
+            android:text="Book Autor Name"
             android:textStyle="bold" />
 
         <EditText
@@ -49,20 +49,20 @@
             android:layout_marginTop="8dp"/>
 
         <TextView
-            android:id="@+id/tv_price"
+            android:id="@+id/tv_author_surname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="8dp"
-            android:text="Book Price"
+            android:text="Book Autor Surname"
             android:textStyle="bold" />
 
         <EditText
-            android:id="@+id/edit_book_price_edit_text"
+            android:id="@+id/edit_author_surname_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
-            android:layout_marginTop="8dp" />
+            android:layout_marginTop="8dp"/>
 
 
         <Button
