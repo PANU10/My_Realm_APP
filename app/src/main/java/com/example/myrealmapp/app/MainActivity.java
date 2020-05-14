@@ -81,6 +81,8 @@ public class MainActivity extends AppCompatActivity {
         queryResult.observe(this, new Observer<String>() {
             @Override
             public void onChanged(final String query) {
+
+                // TODO cambiar esto en la version 2
                 RealmResults<Books> results = realm.where(Books.class).contains("bookName", query).findAll();
                 bookAdapter = new BookAdapter(MainActivity.this, realm, results);
                 recyclerView.setAdapter(bookAdapter);

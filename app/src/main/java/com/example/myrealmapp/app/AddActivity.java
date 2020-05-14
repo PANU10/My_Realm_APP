@@ -17,7 +17,7 @@ import io.realm.RealmAsyncTask;
 
 public class AddActivity extends AppCompatActivity {
 
-    private EditText bookName, authorName, bookPrice;
+    private EditText bookName, authorName, authorSurname;
     private Realm myRealm;
     private RealmAsyncTask realmAsyncTask;
 
@@ -28,7 +28,7 @@ public class AddActivity extends AppCompatActivity {
 
         bookName = findViewById(R.id.book_name_edit_text);
         authorName = findViewById(R.id.author_name_edit_text);
-        bookPrice = findViewById(R.id.book_price_edit_text);
+        authorSurname = findViewById(R.id.author_surname_edit_text);
 
         myRealm = Realm.getDefaultInstance();
     }
@@ -38,7 +38,7 @@ public class AddActivity extends AppCompatActivity {
         final String id = UUID.randomUUID().toString();
         final String book_name = bookName.getText().toString().trim();
         final String author_name = authorName.getText().toString().trim();
-        final String book_price = bookPrice.getText().toString().trim();
+        final String author_surname = authorSurname.getText().toString().trim();
 
         if (book_name.isEmpty()) {
            Toast.makeText(AddActivity.this, "Enter book name ... " , Toast.LENGTH_LONG).show();
@@ -49,9 +49,8 @@ public class AddActivity extends AppCompatActivity {
             Toast.makeText(AddActivity.this, "Enter autor name ... " , Toast.LENGTH_LONG).show();
             return;
         }
-
-        if (book_price.isEmpty()) {
-            Toast.makeText(AddActivity.this, "Enter price book ... " , Toast.LENGTH_LONG).show();
+        if (author_surname.isEmpty()) {
+            Toast.makeText(AddActivity.this, "Enter autor surname ... " , Toast.LENGTH_LONG).show();
             return;
         }
 
@@ -60,8 +59,8 @@ public class AddActivity extends AppCompatActivity {
             public void execute(Realm realm) {
                 Books books = realm.createObject(Books.class, id);
                 books.setBookName(book_name);
-                books.setBookAutor(author_name);
-                books.setBookPrice(Double.parseDouble(book_price));
+                books.setBookAutorName(author_name);
+                books.setBookAutroSurname(author_surname);
             }
         }, new Realm.Transaction.OnSuccess() {
             @Override
@@ -69,7 +68,7 @@ public class AddActivity extends AppCompatActivity {
                 Toast.makeText(AddActivity.this, "Insert Record Successfully" , Toast.LENGTH_LONG).show();
                 bookName.setText("");
                 authorName.setText("");
-                bookPrice.setText("");
+                authorSurname.setText("");
             }
         }, new Realm.Transaction.OnError() {
             @Override

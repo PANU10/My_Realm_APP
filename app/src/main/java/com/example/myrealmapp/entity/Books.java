@@ -14,19 +14,27 @@ public class Books extends RealmObject {
     private String bookName;
     @Required
     private String bookAutor;
+
+    // Migration version 1 : Añadir este campo y borrar el atributo bookprice
     @Required
-    private Double bookPrice;
+    private String bookAutroSurname;
+
+
+    // Migration version 2 : Juntar los dos campos NAME y SURNAME
+
 
 
     public Books() {
     }
 
-    public Books(String bookId, String bookName, String bookAutor, Double bookPrice) {
+    public Books(String bookId, String bookName, String bookAutorName, String bookAutroSurname) {
         this.bookId = bookId;
         this.bookName = bookName;
-        this.bookAutor = bookAutor;
-        this.bookPrice = bookPrice;
+        this.bookAutor = bookAutorName;
+        this.bookAutroSurname = bookAutroSurname;
     }
+
+
 
     public String getBookName() {
         return bookName;
@@ -36,19 +44,19 @@ public class Books extends RealmObject {
         this.bookName = bookName;
     }
 
-    public String getBookAutor() {
+    public String getBookAutorName() {
         return bookAutor;
     }
 
-    public void setBookAutor(String bookAutor) {
-        this.bookAutor = bookAutor;
+    public void setBookAutorName(String bookAutorName) {
+        this.bookAutor = bookAutorName;
     }
 
-    public Double getBookPrice() {
-        return bookPrice;
+    public String getBookAutroSurname() {
+        return bookAutroSurname;
     }
 
-    public void setBookPrice(Double bookPrice) {
-        this.bookPrice = bookPrice;
+    public void setBookAutroSurname(String bookAutroSurname) {
+        this.bookAutroSurname = bookAutroSurname;
     }
 }

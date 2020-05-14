@@ -24,13 +24,6 @@
         android:orientation="vertical"
         android:padding="12dp">
 
-<!--        <co.moonmonkeylabs.realmsearchview.RealmSearchView-->
-<!--            android:id="@+id/search_view"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"-->
-<!--            app:rsvHint="@string/search_hint"-->
-<!--            />-->
-
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -61,15 +54,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Book Price"
+            android:text="Author Surname"
             android:textStyle="bold" />
 
         <EditText
-            android:id="@+id/book_price_edit_text"
+            android:id="@+id/author_surname_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp" />
-
 
         <Button
             android:layout_width="match_parent"
